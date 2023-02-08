@@ -28,6 +28,4 @@ public class Member {
 
     private String memberImage;
 
-    private String test;
-
 }
