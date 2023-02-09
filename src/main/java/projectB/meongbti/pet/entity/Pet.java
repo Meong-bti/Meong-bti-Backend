@@ -45,5 +45,7 @@ public class Pet {
     private Member member;
 
 
+    private String test;
+
 
 }
