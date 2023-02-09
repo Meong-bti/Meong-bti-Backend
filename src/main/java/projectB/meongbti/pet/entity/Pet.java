@@ -32,7 +32,7 @@ public class Pet {
     private Character petNtlz;
 
     @Column(nullable = false)
-    private Double weight;
+    private Double petWeight;
 
     @Column(nullable = false)
     private String petMbti;
@@ -43,7 +43,5 @@ public class Pet {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
-
-
 
 }
