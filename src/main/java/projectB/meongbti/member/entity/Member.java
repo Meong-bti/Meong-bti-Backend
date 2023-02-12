@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -31,6 +32,7 @@ public class Member {
     private String memberNick;
 
     private String memberImage;
+
 
     @OneToMany(mappedBy = "member")
     private List<Pet> petList = new ArrayList<>();
@@ -68,4 +70,5 @@ public class Member {
     public void changePassword(String newPassword) {
         this.memberPw = newPassword;
     }
+
 }

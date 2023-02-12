@@ -32,18 +32,16 @@ public class Pet {
     private Character petNtlz;
 
     @Column(nullable = false)
-    private Double weight;
 
-    @Column(nullable = false)
+    private Double petWeight;
+
     private String petMbti;
 
-    @Column(nullable = false)
+
     private String petImage;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
-
-
 
 }
