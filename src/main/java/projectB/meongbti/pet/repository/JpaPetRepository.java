@@ -16,6 +16,14 @@ public class JpaPetRepository implements PetRepository {
     private final EntityManager em;
 
     /**
+     * 펫 등록
+     */
+    @Override
+    public void savePet(Pet pet) {
+        em.persist(pet);
+    }
+
+    /**
      * 멤버ID를 이용하여 멤버의 애완동물을 조회
      */
     @Override

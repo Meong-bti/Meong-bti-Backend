@@ -34,10 +34,8 @@ public class Pet {
     @Column(nullable = false)
     private Double petWeight;
 
-    @Column(nullable = false)
     private String petMbti;
 
-    @Column(nullable = false)
     private String petImage;
 
     @ManyToOne(fetch = FetchType.LAZY)

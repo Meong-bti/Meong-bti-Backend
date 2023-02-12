@@ -1,12 +1,11 @@
 package projectB.meongbti.pet.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import projectB.meongbti.pet.dto.PetDto;
-import projectB.meongbti.pet.service.PetSerivce;
+import projectB.meongbti.pet.dto.PetSaveDto;
+import projectB.meongbti.pet.dto.PetUpdateDto;
+import projectB.meongbti.pet.service.PetService;
 
 import java.util.List;
 
@@ -15,14 +14,38 @@ import java.util.List;
 @RequestMapping("/pet")
 public class PetController {
 
-    private final PetSerivce petSerivce;
+    private final PetService petService;
+
+    /**
+     * 펫 등록
+     */
+    @PostMapping()
+    public Long savePet(@RequestBody PetSaveDto petSaveDto) {
+        return petService.savePet(petSaveDto);
+    }
+
+    /**
+     * 펫 수정
+     */
+    @PatchMapping("/update/{petId}")
+    public Long updatePet(@PathVariable Long petId, @RequestBody PetUpdateDto petUpdateDto) {
+        return petService.updatePet(petId, petUpdateDto);
+    }
+
+    /**
+     * 펫 삭제
+     */
+    @DeleteMapping("/delete/{petId}")
+    public Long DeletePet(@PathVariable Long petId) {
+        return 1L;
+    }
 
     /**
      * 멤버ID를 이용하여 멤버의 애완동물을 조회
      */
     @GetMapping("/member/{memberId}")
     public List<PetDto> findBymemberId(@PathVariable Long memberId) {
-        return petSerivce.findBymemberId(memberId);
+        return petService.findBymemberId(memberId);
     }
 
     /**
@@ -30,7 +53,7 @@ public class PetController {
      */
     @GetMapping("/{petId}")
     public PetDto findByPetId(@PathVariable Long petId) {
-        return petSerivce.findByPetId(petId);
+        return petService.findByPetId(petId);
     }
 
 }
