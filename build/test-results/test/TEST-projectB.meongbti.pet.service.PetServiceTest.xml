@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="projectB.meongbti.pet.service.PetServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-02-13T14:08:51" hostname="DESKTOP-4HQQ7N5" time="0.7">
+  <properties/>
+  <testcase name="펫 등록" classname="projectB.meongbti.pet.service.PetServiceTest" time="0.7"/>
+  <system-out><![CDATA[23:08:43.569 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+23:08:43.590 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+23:08:43.643 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [projectB.meongbti.pet.service.PetServiceTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+23:08:43.664 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [projectB.meongbti.pet.service.PetServiceTest], using SpringBootContextLoader
+23:08:43.673 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [projectB.meongbti.pet.service.PetServiceTest]: class path resource [projectB/meongbti/pet/service/PetServiceTest-context.xml] does not exist
+23:08:43.674 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [projectB.meongbti.pet.service.PetServiceTest]: class path resource [projectB/meongbti/pet/service/PetServiceTestContext.groovy] does not exist
+23:08:43.674 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [projectB.meongbti.pet.service.PetServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+23:08:43.676 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [projectB.meongbti.pet.service.PetServiceTest]: PetServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:08:43.755 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [projectB.meongbti.pet.service.PetServiceTest]
+23:08:43.866 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\project\Meong_bti_Backend\build\classes\java\main\projectB\meongbti\MeongbtiApplication.class]
+23:08:43.868 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration projectB.meongbti.MeongbtiApplication for test class projectB.meongbti.pet.service.PetServiceTest
+23:08:44.041 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [projectB.meongbti.pet.service.PetServiceTest]: using defaults.
+23:08:44.042 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+23:08:44.085 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@36dce7ed, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@47a64f7d, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@33d05366, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@27a0a5a2, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7692cd34, org.springframework.test.context.support.DirtiesContextTestExecutionListener@33aa93c, org.springframework.test.context.transaction.TransactionalTestExecutionListener@32c0915e, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@106faf11, org.springframework.test.context.event.EventPublishingTestExecutionListener@70f43b45, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@26d10f2e, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@10ad20cb, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@7dd712e8, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@2c282004, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@22ee2d0, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@7bfc3126]
+23:08:44.091 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@4102b1b1 testClass = PetServiceTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@61a5b4ae testClass = PetServiceTest, locations = '{}', classes = '{class projectB.meongbti.MeongbtiApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@5c3b6c6e, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@79da1ec0, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@27953a83, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@666b83a4, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2ece4966, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@51a9ad5e], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.8)
+
+2023-02-13 23:08:44.649  INFO 29588 --- [    Test worker] p.meongbti.pet.service.PetServiceTest    : Starting PetServiceTest using Java 11.0.15.1 on DESKTOP-4HQQ7N5 with PID 29588 (started by Junho in C:\project\Meong_bti_Backend)
+2023-02-13 23:08:44.650  INFO 29588 --- [    Test worker] p.meongbti.pet.service.PetServiceTest    : No active profile set, falling back to 1 default profile: "default"
+2023-02-13 23:08:45.788  INFO 29588 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-13 23:08:45.890  INFO 29588 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 90 ms. Found 1 JPA repository interfaces.
+2023-02-13 23:08:46.772  INFO 29588 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-13 23:08:46.892  INFO 29588 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-13 23:08:47.260  INFO 29588 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-13 23:08:47.506  INFO 29588 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-13 23:08:47.992  INFO 29588 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-13 23:08:48.066  INFO 29588 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+Hibernate: 
+    
+    alter table pet 
+       drop 
+       foreign key FK1c9th7o408mgfqkbjjkvkl4mw
+Hibernate: 
+    
+    drop table if exists member
+Hibernate: 
+    
+    drop table if exists pet
+Hibernate: 
+    
+    create table member (
+       member_id bigint not null auto_increment,
+        member_email varchar(255) not null,
+        member_image varchar(255),
+        member_nick varchar(255) not null,
+        member_phone varchar(255) not null,
+        member_pw varchar(255) not null,
+        primary key (member_id)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table pet (
+       pet_id bigint not null auto_increment,
+        pet_bday date not null,
+        pet_breed varchar(255) not null,
+        pet_gender varchar(255) not null,
+        pet_image varchar(255),
+        pet_mbti varchar(255),
+        pet_name varchar(255) not null,
+        pet_ntlz varchar(255) not null,
+        pet_weight double precision not null,
+        member_id bigint,
+        primary key (pet_id)
+    ) engine=InnoDB
+Hibernate: 
+    
+    alter table member 
+       add constraint UK_3orqjaukiw2b73e2gw8rer4rq unique (member_email)
+Hibernate: 
+    
+    alter table pet 
+       add constraint FK1c9th7o408mgfqkbjjkvkl4mw 
+       foreign key (member_id) 
+       references member (member_id)
+2023-02-13 23:08:49.667  INFO 29588 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-13 23:08:49.686  INFO 29588 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-13 23:08:50.772  WARN 29588 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-13 23:08:51.912  INFO 29588 --- [    Test worker] p.meongbti.pet.service.PetServiceTest    : Started PetServiceTest in 7.758 seconds (JVM running for 10.281)
+2023-02-13 23:08:51.975  INFO 29588 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@4102b1b1 testClass = PetServiceTest, testInstance = projectB.meongbti.pet.service.PetServiceTest@175c26ff, testMethod = petSave@PetServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@61a5b4ae testClass = PetServiceTest, locations = '{}', classes = '{class projectB.meongbti.MeongbtiApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@5c3b6c6e, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@79da1ec0, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@27953a83, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@666b83a4, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2ece4966, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@51a9ad5e], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@7307ae6]; rollback [true]
+Hibernate: 
+    insert 
+    into
+        member
+        (member_email, member_image, member_nick, member_phone, member_pw) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        pet
+        (member_id, pet_bday, pet_breed, pet_gender, pet_image, pet_mbti, pet_name, pet_ntlz, pet_weight) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        pet0_.pet_id as pet_id1_1_,
+        pet0_.member_id as member_10_1_,
+        pet0_.pet_bday as pet_bday2_1_,
+        pet0_.pet_breed as pet_bree3_1_,
+        pet0_.pet_gender as pet_gend4_1_,
+        pet0_.pet_image as pet_imag5_1_,
+        pet0_.pet_mbti as pet_mbti6_1_,
+        pet0_.pet_name as pet_name7_1_,
+        pet0_.pet_ntlz as pet_ntlz8_1_,
+        pet0_.pet_weight as pet_weig9_1_ 
+    from
+        pet pet0_ 
+    where
+        pet0_.pet_id=?
+2023-02-13 23:08:52.646  INFO 29588 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@4102b1b1 testClass = PetServiceTest, testInstance = projectB.meongbti.pet.service.PetServiceTest@175c26ff, testMethod = petSave@PetServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@61a5b4ae testClass = PetServiceTest, locations = '{}', classes = '{class projectB.meongbti.MeongbtiApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@5c3b6c6e, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@79da1ec0, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@27953a83, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@666b83a4, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2ece4966, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@51a9ad5e], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

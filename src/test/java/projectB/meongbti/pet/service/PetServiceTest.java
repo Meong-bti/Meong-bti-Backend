@@ -1,6 +1,5 @@
-package projectB.meongbti.pet.controller;
+package projectB.meongbti.pet.service;
 
-import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,16 +10,20 @@ import projectB.meongbti.member.entity.Member;
 import projectB.meongbti.member.repository.MemberRepository;
 import projectB.meongbti.pet.dto.PetDto;
 import projectB.meongbti.pet.dto.PetSaveDto;
-import projectB.meongbti.pet.service.PetService;
+import projectB.meongbti.pet.entity.Pet;
+import projectB.meongbti.pet.repository.PetRepository;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @SpringBootTest
 @Transactional
-class PetControllerTest {
+class PetServiceTest {
 
     @Autowired
     PetService petService;
+    @Autowired
+    PetRepository petRepository;
     @Autowired
     MemberRepository memberRepository;
 
@@ -50,9 +53,9 @@ class PetControllerTest {
         Long petId = petService.savePet(petSaveDto);
 
         //then
-        PetDto petDto = petService.findOneByPetId(petId);
+        Pet pet = petRepository.findByPetId(petId).get();
 
-        Assertions.assertThat(petId).isEqualTo(petDto.getPetId());
+        Assertions.assertThat(petId).isEqualTo(pet.getPetId());
     }
 
     @DisplayName("펫 삭제")
