@@ -50,13 +50,24 @@ class PetControllerTest {
         Long petId = petService.savePet(petSaveDto);
 
         //then
-        PetDto petDto = petService.findByPetId(petId);
+        PetDto petDto = petService.findOneByPetId(petId);
 
         Assertions.assertThat(petId).isEqualTo(petDto.getPetId());
     }
 
+    @DisplayName("펫 삭제")
     @Test
-    void 펫목록조회By멤버ID() {
+    void deletePet() {
+        //given
+
+        //when
+
+        //then
+    }
+
+    @DisplayName("펫 수정")
+    @Test
+    void petUpdate() {
         //given
 
         //when
@@ -65,8 +76,9 @@ class PetControllerTest {
 
     }
 
+    @DisplayName("펫조회By펫Id")
     @Test
-    void 펫조회By펫ID() {
+    void findOne() {
 
 
     }

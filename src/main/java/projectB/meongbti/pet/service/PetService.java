@@ -75,7 +75,7 @@ public class PetService {
     /**
      * 펫ID를 이용하여 펫 정보 조회
      */
-    public PetDto findByPetId(Long petId) {
+    public PetDto findOneByPetId(Long petId) {
         Pet pet = petRepository.findByPetId(petId)
                 .orElseThrow(() -> new NotExistPet());
 
@@ -86,7 +86,7 @@ public class PetService {
      * 멤버ID를 이용하여 멤버의 애완동물을 조회
      */
     @Transactional(readOnly = true)
-    public List<PetDto> findBymemberId(Long memberId) {
+    public List<PetDto> findAllByMemberId(Long memberId) {
         List<Pet> findPets = petRepository.findBymemberId(memberId);
 
         List<PetDto> returnList = new ArrayList<>();

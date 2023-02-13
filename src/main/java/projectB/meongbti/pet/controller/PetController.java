@@ -36,24 +36,23 @@ public class PetController {
      * 펫 삭제
      */
     @DeleteMapping("/delete/{petId}")
-    public Long DeletePet(@PathVariable Long petId) {
+    public Long deletePet(@PathVariable Long petId) {
         return 1L;
-    }
-
-    /**
-     * 멤버ID를 이용하여 멤버의 애완동물을 조회
-     */
-    @GetMapping("/member/{memberId}")
-    public List<PetDto> findBymemberId(@PathVariable Long memberId) {
-        return petService.findBymemberId(memberId);
     }
 
     /**
      * 펫ID를 이용하여 펫 정보 조회
      */
     @GetMapping("/{petId}")
-    public PetDto findByPetId(@PathVariable Long petId) {
-        return petService.findByPetId(petId);
+    public PetDto findOneByPetId(@PathVariable Long petId) {
+        return petService.findOneByPetId(petId);
     }
 
+    /**
+     * 멤버ID를 이용하여 멤버의 애완동물을 조회
+     */
+    @GetMapping("/member/{memberId}")
+    public List<PetDto> findAllByMemberId(@PathVariable Long memberId) {
+        return petService.findAllByMemberId(memberId);
+    }
 }
