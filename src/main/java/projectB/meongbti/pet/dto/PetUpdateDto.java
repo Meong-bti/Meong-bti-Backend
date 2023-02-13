@@ -15,9 +15,9 @@ public class PetUpdateDto {
 
     private LocalDate petBday;
 
-    private Character petSex;
+    private String petGender;
 
-    private Character petNtlz;
+    private String petNtlz;
 
     private Double petWeight;
 
