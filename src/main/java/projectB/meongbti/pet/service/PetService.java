@@ -54,8 +54,11 @@ public class PetService {
      * 펫 삭제
      */
     public Long deletePet(Long petId) {
-        //삭제 어떻게 할지 정해야함.
-        return 1L;
+        Pet pet = petRepository.findByPetId(petId).orElseThrow(() -> new NotExistPet());
+
+        petRepository.deletePet(pet);
+
+        return petId;
     }
 
     /**

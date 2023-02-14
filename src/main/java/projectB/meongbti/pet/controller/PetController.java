@@ -37,7 +37,7 @@ public class PetController {
      */
     @DeleteMapping("/delete/{petId}")
     public Long deletePet(@PathVariable Long petId) {
-        return 1L;
+        return petService.deletePet(petId);
     }
 
     /**

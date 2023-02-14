@@ -24,11 +24,19 @@ public class JpaPetRepository implements PetRepository {
     }
 
     /**
+     * 펫 삭제
+     */
+    @Override
+    public void deletePet(Pet pet) {
+        em.remove(pet);
+    }
+
+    /**
      * 멤버ID를 이용하여 멤버의 애완동물을 조회
      */
     @Override
     public List<Pet> findBymemberId(Long memberId) {
-        String jpql = "select p from Pet p where p.member = :memberId";
+        String jpql = "select p from Pet p where p.member.id = :memberId";
 
         List<Pet> findPets = em.createQuery(jpql, Pet.class)
                 .setParameter("memberId", memberId)
