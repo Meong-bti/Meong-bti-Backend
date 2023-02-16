@@ -10,7 +10,6 @@ import projectB.meongbti.member.entity.Member;
 public class MemberDto {
     private String memberEmail;
     private String memberPw;
-
     private String memberPhone;
     private String memberNick;
     private String memberImage;

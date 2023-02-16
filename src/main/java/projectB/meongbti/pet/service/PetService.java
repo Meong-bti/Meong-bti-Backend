@@ -11,26 +11,36 @@ import projectB.meongbti.pet.dto.PetSaveDto;
 import projectB.meongbti.pet.dto.PetUpdateDto;
 import projectB.meongbti.pet.entity.Pet;
 import projectB.meongbti.pet.repository.PetRepository;
+import projectB.meongbti.util.ImageStore;
+import projectB.meongbti.util.UploadFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class PetService {
 
     private final PetRepository petRepository;
     private final MemberRepository memberRepository;
 
+    private final ImageStore imageStore;
+
     /**
      * 펫등록
      */
-    public Long savePet(PetSaveDto petSaveDto) {
+    public Long savePet(PetSaveDto petSaveDto) throws IOException {
         //전달 받은 memberId를 통해 member 정보 조회
         Member member = memberRepository.findById(petSaveDto.getMemberId()).get();
 
-        //사진 저장하는거 보고 넣어야 함.
+        //이미지를 저장한다.
+        UploadFile uploadFile = new UploadFile();
+        if (!petSaveDto.getPetImage().isEmpty()) {
+            uploadFile = imageStore.storeFile(petSaveDto.getPetImage());
+        }
 
         //조회한 member를 pet 엔티티에 저장
         Pet pet = Pet.builder()
@@ -40,7 +50,7 @@ public class PetService {
                 .petGender(petSaveDto.getPetGender())
                 .petNtlz(petSaveDto.getPetNtlz())
                 .petWeight(petSaveDto.getPetWeight())
-                .petImage(petSaveDto.getPetImage())
+                .petImage(uploadFile)
                 .member(member)
                 .build();
 
@@ -78,6 +88,7 @@ public class PetService {
     /**
      * 펫ID를 이용하여 펫 정보 조회
      */
+    @Transactional(readOnly = true)
     public PetDto findOneByPetId(Long petId) {
         Pet pet = petRepository.findByPetId(petId)
                 .orElseThrow(() -> new NotExistPet());

@@ -7,6 +7,7 @@ import projectB.meongbti.pet.dto.PetSaveDto;
 import projectB.meongbti.pet.dto.PetUpdateDto;
 import projectB.meongbti.pet.service.PetService;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class PetController {
      * 펫 등록
      */
     @PostMapping("save")
-    public Long savePet(@RequestBody PetSaveDto petSaveDto) {
+    public Long savePet(@RequestBody PetSaveDto petSaveDto) throws IOException {
         return petService.savePet(petSaveDto);
     }
 

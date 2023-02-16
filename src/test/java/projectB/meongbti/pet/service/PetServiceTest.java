@@ -13,8 +13,11 @@ import projectB.meongbti.pet.dto.PetDto;
 import projectB.meongbti.pet.dto.PetSaveDto;
 import projectB.meongbti.pet.dto.PetUpdateDto;
 import projectB.meongbti.pet.entity.Pet;
+import projectB.meongbti.pet.entity.PetGender;
+import projectB.meongbti.pet.entity.PetNtlz;
 import projectB.meongbti.pet.repository.PetRepository;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +36,7 @@ class PetServiceTest {
 
     @DisplayName("펫 등록")
     @Test
-    void petSave() {
+    void petSave() throws IOException {
         //given
         Member member = Member.builder()
                 .memberEmail("test@test.com")
@@ -47,8 +50,8 @@ class PetServiceTest {
                 .petName("test")
                 .petBreed("골든리트리버")
                 .petBday(LocalDate.now())
-                .petGender("MALE")
-                .petNtlz("NTLZ")
+                .petGender(PetGender.MALE)
+                .petNtlz(PetNtlz.NTLZ)
                 .petWeight(11.11)
                 .memberId(member.getMemberId())
                 .build();
@@ -70,7 +73,7 @@ class PetServiceTest {
 
     @DisplayName("펫 삭제")
     @Test
-    void deletePet() {
+    void deletePet() throws IOException {
         //given
         Member member = Member.builder()
                 .memberEmail("test@test.com")
@@ -84,8 +87,8 @@ class PetServiceTest {
                 .petName("test")
                 .petBreed("골든리트리버")
                 .petBday(LocalDate.now())
-                .petGender("MALE")
-                .petNtlz("NTLZ")
+                .petGender(PetGender.MALE)
+                .petNtlz(PetNtlz.NTLZ)
                 .petWeight(11.11)
                 .memberId(member.getMemberId())
                 .build();
@@ -101,7 +104,7 @@ class PetServiceTest {
 
     @DisplayName("펫 수정")
     @Test
-    void petUpdate() {
+    void petUpdate() throws IOException {
         //given
         Member member = Member.builder()
                 .memberEmail("test@test.com")
@@ -115,8 +118,8 @@ class PetServiceTest {
                 .petName("test")
                 .petBreed("골든리트리버")
                 .petBday(LocalDate.now())
-                .petGender("MALE")
-                .petNtlz("NTLZ")
+                .petGender(PetGender.MALE)
+                .petNtlz(PetNtlz.NTLZ)
                 .petWeight(11.11)
                 .memberId(member.getMemberId())
                 .build();
@@ -127,8 +130,8 @@ class PetServiceTest {
                 .petName("updateTest")
                 .petBreed("말라뮤트")
                 .petBday(LocalDate.now())
-                .petGender("FEMALE")
-                .petNtlz("NONE")
+                .petGender(PetGender.FEMALE)
+                .petNtlz(PetNtlz.NONE)
                 .petWeight(22.22)
                 .build();
 
@@ -147,7 +150,7 @@ class PetServiceTest {
 
     @DisplayName("펫조회By펫Id")
     @Test
-    void findOneByPetId() {
+    void findOneByPetId() throws IOException {
         //given
         Member member = Member.builder()
                 .memberEmail("test@test.com")
@@ -161,8 +164,8 @@ class PetServiceTest {
                 .petName("test")
                 .petBreed("골든리트리버")
                 .petBday(LocalDate.now())
-                .petGender("MALE")
-                .petNtlz("NTLZ")
+                .petGender(PetGender.MALE)
+                .petNtlz(PetNtlz.NTLZ)
                 .petWeight(11.11)
                 .memberId(member.getMemberId())
                 .build();
@@ -185,7 +188,7 @@ class PetServiceTest {
 
     @DisplayName("펫목록조회By멤버Id")
     @Test
-    void findAllMemberId (){
+    void findAllMemberId () throws IOException {
         //given
         Member member = Member.builder()
                 .memberEmail("test@test.com")
@@ -199,8 +202,8 @@ class PetServiceTest {
                 .petName("test")
                 .petBreed("골든리트리버")
                 .petBday(LocalDate.now())
-                .petGender("MALE")
-                .petNtlz("NTLZ")
+                .petGender(PetGender.MALE)
+                .petNtlz(PetNtlz.NTLZ)
                 .petWeight(11.11)
                 .memberId(member.getMemberId())
                 .build();
@@ -209,8 +212,8 @@ class PetServiceTest {
                 .petName("test2")
                 .petBreed("말라뮤트")
                 .petBday(LocalDate.now())
-                .petGender("FEMALE")
-                .petNtlz("NONE")
+                .petGender(PetGender.FEMALE)
+                .petNtlz(PetNtlz.NONE)
                 .petWeight(22.22)
                 .memberId(member.getMemberId())
                 .build();
