@@ -126,7 +126,7 @@ public class PetService {
                 .petNtlz(pet.getPetNtlz())
                 .petWeight(pet.getPetWeight())
                 .petMbti(pet.getPetMbti())
-                .petImage(pet.getPetImage())
+                //.petImage(pet.getPetImage())
                 .memberId(pet.getMember().getMemberId())
                 .build();
     }
