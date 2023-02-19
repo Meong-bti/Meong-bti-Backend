@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import projectB.meongbti.exception.member.NotExistMember;
 import projectB.meongbti.member.dto.MemberDto;
 import projectB.meongbti.member.entity.Member;
 import projectB.meongbti.member.repository.MemberRepository;
@@ -24,7 +25,7 @@ public class MemberService {
     }
 
     public MemberDto updateMember(Long id, MemberDto memberDto){
-        Member member = memberRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 회원이 없습니다. id=" + id));
+        Member member = memberRepository.findById(id).orElseThrow(() -> new NotExistMember(id));
         member.update(memberDto.getMemberPhone(), memberDto.getMemberNick(),memberDto.getMemberImage(), memberDto.getMemberPw());
         memberRepository.save(member);
         return MemberDto.toDto(member);
@@ -34,7 +35,7 @@ public class MemberService {
 
     public void deleteMember(Long id){
 
-        Member member = memberRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 회원이 없습니다. id=" + id));
+        Member member = memberRepository.findById(id).orElseThrow(() -> new NotExistMember(id));
         memberRepository.delete(member);
 
 

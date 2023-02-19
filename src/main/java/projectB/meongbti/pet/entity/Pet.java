@@ -2,9 +2,7 @@ package projectB.meongbti.pet.entity;
 
 import lombok.*;
 import projectB.meongbti.member.entity.Member;
-import projectB.meongbti.pet.dto.PetSaveDto;
 import projectB.meongbti.pet.dto.PetUpdateDto;
-import projectB.meongbti.util.UploadFile;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -43,7 +41,7 @@ public class Pet {
     private String petMbti;
 
     @Embedded
-    private UploadFile petImage;
+    private String petImage;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
@@ -57,7 +55,7 @@ public class Pet {
         this.petGender = petUpdateDto.getPetGender();
         this.petNtlz = petUpdateDto.getPetNtlz();
         this.petWeight = petUpdateDto.getPetWeight();
-        this.petImage = petUpdateDto.getPetImage();
+//        this.petImage = petUpdateDto.getPetImage();
     }
 
 }

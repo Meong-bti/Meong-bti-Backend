@@ -1,7 +1,8 @@
-package projectB.meongbti.util;
+package projectB.meongbti.util.image;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import projectB.meongbti.util.image.Entity.ImageMapping;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,11 +17,11 @@ public class ImageStore {
         return fileDir + filename;
     }
 
-    public UploadFile storeFile(MultipartFile multipartFile) throws IOException {
+    public ImageMapping storeFile(MultipartFile multipartFile) throws IOException {
         String originalFilename = multipartFile.getOriginalFilename();
         String storeFilename = createStoreFileName(originalFilename);
         multipartFile.transferTo(new File(getFullPath(storeFilename)));
-        return new UploadFile(originalFilename, storeFilename);
+        return new ImageMapping(originalFilename, storeFilename);
     }
 
     private String createStoreFileName(String originalFilename) {

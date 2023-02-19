@@ -3,6 +3,7 @@ package projectB.meongbti.pet.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import projectB.meongbti.exception.member.NotExistMember;
 import projectB.meongbti.exception.pet.NotExistPet;
 import projectB.meongbti.member.entity.Member;
 import projectB.meongbti.member.repository.MemberRepository;
@@ -11,13 +12,13 @@ import projectB.meongbti.pet.dto.PetSaveDto;
 import projectB.meongbti.pet.dto.PetUpdateDto;
 import projectB.meongbti.pet.entity.Pet;
 import projectB.meongbti.pet.repository.PetRepository;
-import projectB.meongbti.util.ImageStore;
-import projectB.meongbti.util.UploadFile;
+import projectB.meongbti.util.image.Entity.ImageMapping;
+import projectB.meongbti.util.image.ImageStore;
+import projectB.meongbti.util.image.repository.ImageRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,19 +28,23 @@ public class PetService {
     private final PetRepository petRepository;
     private final MemberRepository memberRepository;
 
+    //이미지 저장
     private final ImageStore imageStore;
+    private final ImageRepository imageRepository;
 
     /**
      * 펫등록
      */
     public Long savePet(PetSaveDto petSaveDto) throws IOException {
         //전달 받은 memberId를 통해 member 정보 조회
-        Member member = memberRepository.findById(petSaveDto.getMemberId()).get();
+        Member member = memberRepository.findById(petSaveDto.getMemberId()).orElseThrow(() -> new NotExistMember(petSaveDto.getMemberId()));
 
         //이미지를 저장한다.
-        UploadFile uploadFile = new UploadFile();
+        String fullPath = "";
         if (!petSaveDto.getPetImage().isEmpty()) {
-            uploadFile = imageStore.storeFile(petSaveDto.getPetImage());
+            ImageMapping imageMapping = imageStore.storeFile(petSaveDto.getPetImage());
+            fullPath = imageStore.getFullPath(imageMapping.getImStore());
+            imageRepository.save(imageMapping);
         }
 
         //조회한 member를 pet 엔티티에 저장
@@ -50,7 +55,7 @@ public class PetService {
                 .petGender(petSaveDto.getPetGender())
                 .petNtlz(petSaveDto.getPetNtlz())
                 .petWeight(petSaveDto.getPetWeight())
-                .petImage(uploadFile)
+                .petImage(fullPath)
                 .member(member)
                 .build();
 
