@@ -33,6 +33,14 @@ public class MemberController {
     public ResponseEntity<MemberDto.Response> findByid(@PathVariable Long id){
         return ResponseEntity.ok().body(memberService.findByid(id));
     }
+    @GetMapping(value = "/members/{id}/profile-image")
+    public ResponseEntity<byte[]> getProfileImage(@PathVariable Long id) {
+        Member member = memberService.getMemberById(id);
+        byte[] imageData = member.getProfileImage();
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_JPEG);
+        return new ResponseEntity<>(imageData, headers, HttpStatus.OK);
+    }
 
 //    @GetMapping("/email/{email}")
 //    public ResponseEntity<MemberDto.Response> findByEmail(@PathVariable String email) {

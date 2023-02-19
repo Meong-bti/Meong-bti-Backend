@@ -33,6 +33,10 @@ public class Member {
 
     private String memberImage;
 
+    @Lob
+    @Column(name = "profile_image")
+    private byte[] profileImage;
+
 
     @OneToMany(mappedBy = "member")
     private List<Pet> petList = new ArrayList<>();
