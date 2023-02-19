@@ -1,12 +1,17 @@
 package projectB.meongbti.pet.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
+import projectB.meongbti.pet.entity.PetGender;
+import projectB.meongbti.pet.entity.PetNtlz;
 
 import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
+@Builder
 public class PetSaveDto {
 
     private String petName;
@@ -15,13 +20,13 @@ public class PetSaveDto {
 
     private LocalDate petBday;
 
-    private Character petSex;
+    private PetGender petGender;
 
-    private Character petNtlz;
+    private PetNtlz petNtlz;
 
     private Double petWeight;
 
-    private String petImage;
+    private MultipartFile petImage;
 
     private Long memberId;
 

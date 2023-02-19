@@ -1,9 +1,9 @@
 package projectB.meongbti.pet.dto;
 
 import lombok.*;
-import projectB.meongbti.member.entity.Member;
+import projectB.meongbti.pet.entity.PetGender;
+import projectB.meongbti.pet.entity.PetNtlz;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
@@ -19,9 +19,9 @@ public class PetDto {
 
     private LocalDate petBday;
 
-    private Character petSex;
+    private PetGender petGender;
 
-    private Character petNtlz;
+    private PetNtlz petNtlz;
 
     private Double petWeight;
 

@@ -2,6 +2,9 @@ package projectB.meongbti.pet.entity;
 
 import lombok.*;
 import projectB.meongbti.member.entity.Member;
+import projectB.meongbti.pet.dto.PetSaveDto;
+import projectB.meongbti.pet.dto.PetUpdateDto;
+import projectB.meongbti.util.UploadFile;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -26,10 +29,12 @@ public class Pet {
     private LocalDate petBday;
 
     @Column(nullable = false)
-    private Character petSex;
+    @Enumerated(EnumType.STRING)
+    private PetGender petGender;
 
     @Column(nullable = false)
-    private Character petNtlz;
+    @Enumerated(EnumType.STRING)
+    private PetNtlz petNtlz;
 
     @Column(nullable = false)
 
@@ -37,11 +42,22 @@ public class Pet {
 
     private String petMbti;
 
-
-    private String petImage;
+    @Embedded
+    private UploadFile petImage;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    //==엔티티 메서드==//
+    public void updatePet(PetUpdateDto petUpdateDto) {
+        this.petName = petUpdateDto.getPetName();
+        this.petBreed = petUpdateDto.getPetBreed();
+        this.petBday = petUpdateDto.getPetBday();
+        this.petGender = petUpdateDto.getPetGender();
+        this.petNtlz = petUpdateDto.getPetNtlz();
+        this.petWeight = petUpdateDto.getPetWeight();
+        this.petImage = petUpdateDto.getPetImage();
+    }
 
 }

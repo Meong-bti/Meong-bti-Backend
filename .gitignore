@@ -166,4 +166,12 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+#application.properties
+
+# H2 database
+.h2.server.properties
+.h2.server.lock.db
+*.db
+*.trace.db
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,intellij,java
