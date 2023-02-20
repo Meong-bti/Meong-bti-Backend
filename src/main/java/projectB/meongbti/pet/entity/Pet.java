@@ -40,7 +40,6 @@ public class Pet {
 
     private String petMbti;
 
-    @Embedded
     private String petImage;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -48,14 +47,14 @@ public class Pet {
     private Member member;
 
     //==엔티티 메서드==//
-    public void updatePet(PetUpdateDto petUpdateDto) {
+    public void updatePet(PetUpdateDto petUpdateDto, String fullPath) {
         this.petName = petUpdateDto.getPetName();
         this.petBreed = petUpdateDto.getPetBreed();
         this.petBday = petUpdateDto.getPetBday();
         this.petGender = petUpdateDto.getPetGender();
         this.petNtlz = petUpdateDto.getPetNtlz();
         this.petWeight = petUpdateDto.getPetWeight();
-//        this.petImage = petUpdateDto.getPetImage();
+        this.petImage = fullPath;
     }
 
 }

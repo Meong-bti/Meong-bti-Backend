@@ -36,7 +36,7 @@ class PetServiceTest {
 
     @DisplayName("펫 등록")
     @Test
-    void petSave() throws IOException {
+    void petSave() {
         //given
         Member member = Member.builder()
                 .memberEmail("test@test.com")
