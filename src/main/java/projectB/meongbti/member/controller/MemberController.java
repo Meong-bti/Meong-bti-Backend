@@ -1,56 +1,72 @@
 package projectB.meongbti.member.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import projectB.meongbti.member.dto.MemberDto;
+import org.springframework.web.multipart.MultipartFile;
+import projectB.meongbti.member.dto.MemberJoinRequestDto;
+import projectB.meongbti.member.dto.MemberJoinResponseDto;
 import projectB.meongbti.member.service.MemberService;
+import projectB.meongbti.member.service.StorageService;
+
+import javax.validation.Valid;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/member")
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
+    private final StorageService storageService;
 
-    @PostMapping("/join")
-    public ResponseEntity<MemberDto> join(@RequestBody MemberDto memberDto){
-        MemberDto joinMemberDto =  memberService.join(memberDto);
-        return ResponseEntity.ok().body(joinMemberDto);
-    }
-
-    @PatchMapping("/{id}")
-    public ResponseEntity<MemberDto> updateMember(@PathVariable Long id, @RequestBody MemberDto memberDto){
-        MemberDto updateMemberDto = memberService.updateMember(id, memberDto);
-        return ResponseEntity.ok().body(updateMemberDto);
+    @PostMapping("/fileSystem")
+    public ResponseEntity<?> uploadImageToFIleSystem(@RequestParam("image") MultipartFile file) throws IOException {
+        String uploadImage = storageService.uploadImageToFileSystem(file);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(uploadImage);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMember(@PathVariable Long id){
-        memberService.deleteMember(id);
-        return ResponseEntity.ok().build();
-    }
-    @GetMapping("/{id}")
-    public ResponseEntity<MemberDto.Response> findByid(@PathVariable Long id){
-        return ResponseEntity.ok().body(memberService.findByid(id));
-    }
-    @GetMapping(value = "/members/{id}/profile-image")
-    public ResponseEntity<byte[]> getProfileImage(@PathVariable Long id) {
-        Member member = memberService.getMemberById(id);
-        byte[] imageData = member.getProfileImage();
-        final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_JPEG);
-        return new ResponseEntity<>(imageData, headers, HttpStatus.OK);
+    @GetMapping("/fileSystem/{fileName}")
+    public ResponseEntity<?> downloadImageFromFileSystem(@PathVariable String fileName) throws IOException {
+        byte[] imageData=storageService.downloadImageFromFileSystem(fileName);
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.valueOf("image/png"))
+                .body(imageData);
+
     }
 
-//    @GetMapping("/email/{email}")
-//    public ResponseEntity<MemberDto.Response> findByEmail(@PathVariable String email) {
-//        return ResponseEntity.ok(memberService.findByEmail(email));
+
+
+    @PostMapping("/signup")
+    public ResponseEntity<MemberJoinResponseDto> memberSignup(@RequestBody @Valid
+                                                              MemberJoinRequestDto memberJoinRequestDTO) throws IOException {
+        ResponseEntity<MemberJoinResponseDto> signup = memberService.memberSignup(memberJoinRequestDTO);
+        return ResponseEntity.ok().body(signup.getBody());
+    }
+
+
+
+
+
+
+
+//    @PatchMapping("/{id}")
+//    public ResponseEntity<MemberDto> updateMember(@PathVariable Long id, @RequestBody MemberDto memberDto){
+//        MemberDto updateMemberDto = memberService.updateMember(id, memberDto);
+//        return ResponseEntity.ok().body(updateMemberDto);
 //    }
-//
-//    @PatchMapping("/{id}/pw")
-//    public ResponseEntity<Void> changePassword(@PathVariable Long id, @RequestBody MemberDto.ChangePassword memberDto) {
-//        memberService.changePassword(id, memberDto);
+
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deleteMember(@PathVariable Long id){
+//        memberService.deleteMember(id);
 //        return ResponseEntity.ok().build();
 //    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<MemberDto> findByid(@PathVariable Long id){
+//        return ResponseEntity.ok().body(memberService.findByid(id));
+//    }
+
 
 }

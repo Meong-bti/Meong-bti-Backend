@@ -7,14 +7,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 @NoArgsConstructor
 @Getter
-public class MemberDto {
+public class MemberJoinRequestDto {
     private String memberEmail;
     private String memberPw;
     private String memberNick;
-    private String memberImage;
+    private MultipartFile memberImage;
 
     @Builder
-    public MemberDto(String memberEmail, String memberPw,  String memberNick, String memberImage) {
+    public MemberJoinRequestDto(String memberEmail, String memberPw, String memberNick, MultipartFile  memberImage) {
         this.memberEmail = memberEmail;
         this.memberPw = memberPw;
         this.memberNick = memberNick;
@@ -22,7 +22,8 @@ public class MemberDto {
     }
 
 
-    }
 
 
 
+
+}

@@ -40,7 +40,7 @@ public class Pet {
 
     private String petMbti;
 
-    @Embedded
+
     private String petImage;
 
     @ManyToOne(fetch = FetchType.LAZY)

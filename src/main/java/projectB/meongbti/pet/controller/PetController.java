@@ -20,10 +20,13 @@ public class PetController {
     /**
      * 펫 등록
      */
-    @PostMapping("save")
+    @PostMapping("/save")
     public Long savePet(@RequestBody PetSaveDto petSaveDto) throws IOException {
         return petService.savePet(petSaveDto);
     }
+
+
+
 
     /**
      * 펫 수정
