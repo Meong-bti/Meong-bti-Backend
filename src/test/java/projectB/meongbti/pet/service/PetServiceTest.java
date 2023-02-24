@@ -36,7 +36,7 @@ class PetServiceTest {
 
     @DisplayName("펫 등록")
     @Test
-    void petSave() throws IOException {
+    void petSave() {
         //given
         Member member = Member.builder()
                 .memberEmail("test@test.com")
@@ -126,6 +126,7 @@ class PetServiceTest {
 
         Long petId = petService.savePet(petSaveDto);
 
+        //when
         PetUpdateDto petUpdateDto = PetUpdateDto.builder()
                 .petName("updateTest")
                 .petBreed("말라뮤트")
@@ -135,7 +136,6 @@ class PetServiceTest {
                 .petWeight(22.22)
                 .build();
 
-        //when
         Long findPetId = petService.updatePet(petId, petUpdateDto);
         Pet pet = petRepository.findByPetId(findPetId).get();
 

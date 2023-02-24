@@ -35,14 +35,20 @@ public class PetService {
     /**
      * 펫등록
      */
-    public Long savePet(PetSaveDto petSaveDto) throws IOException {
+    public Long savePet(PetSaveDto petSaveDto) {
         //전달 받은 memberId를 통해 member 정보 조회
         Member member = memberRepository.findById(petSaveDto.getMemberId()).orElseThrow(() -> new NotExistMember(petSaveDto.getMemberId()));
 
         //이미지를 저장한다.
         String fullPath = "";
         if (!petSaveDto.getPetImage().isEmpty()) {
-            ImageMapping imageMapping = imageStore.storeFile(petSaveDto.getPetImage());
+            ImageMapping imageMapping;
+
+            try {
+                imageMapping = imageStore.storeFile(petSaveDto.getPetImage());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             fullPath = imageStore.getFullPath(imageMapping.getImStore());
             imageRepository.save(imageMapping);
         }
@@ -87,8 +93,21 @@ public class PetService {
         //펫 정보가 없으면 NotExistPet 예외를 발생시킨다.
         Pet pet = petRepository.findByPetId(petId).orElseThrow(() -> new NotExistPet());
 
+        //이미지를 저장한다.
+        String fullPath = pet.getPetImage();
+        if (!petUpdateDto.getPetImage().isEmpty()) {
+            ImageMapping imageMapping;
+            try {
+                imageMapping = imageStore.storeFile(petUpdateDto.getPetImage());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            fullPath = imageStore.getFullPath(imageMapping.getImStore());
+            imageRepository.save(imageMapping);
+        }
+
         //펫 정보를 업데이트
-        pet.updatePet(petUpdateDto);
+        pet.updatePet(petUpdateDto, fullPath);
 
         return pet.getPetId();
     }
@@ -134,7 +153,7 @@ public class PetService {
                 .petNtlz(pet.getPetNtlz())
                 .petWeight(pet.getPetWeight())
                 .petMbti(pet.getPetMbti())
-                //.petImage(pet.getPetImage())
+                .petImage(pet.getPetImage())
                 .memberId(pet.getMember().getMemberId())
                 .build();
     }
