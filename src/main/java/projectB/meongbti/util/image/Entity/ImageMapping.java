@@ -20,8 +20,6 @@ public class ImageMapping {
     private String imUpload;
     private String imStore;
 
-    @Builder
-
     public ImageMapping(String imUpload, String imStore) {
         this.imUpload = imUpload;
         this.imStore = imStore;

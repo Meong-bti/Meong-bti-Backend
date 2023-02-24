@@ -13,6 +13,7 @@ public class ImageStore {
 
     private String fileDir;
 
+
     public String getFullPath(String filename) {
         return fileDir + filename;
     }

@@ -37,23 +37,23 @@ public class MemberController {
 
     }
 
-
-
     @PostMapping("/signup")
     public ResponseEntity<MemberJoinResponseDto> memberSignup(@RequestBody @Valid
                                                               MemberJoinRequestDto memberJoinRequestDTO) throws IOException {
         ResponseEntity<MemberJoinResponseDto> signup = memberService.memberSignup(memberJoinRequestDTO);
         return ResponseEntity.ok().body(signup.getBody());
     }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMember(@PathVariable Long id){
-        memberService.deleteMember(id);
-        return ResponseEntity.ok().build();
-    }
-    @GetMapping("/{id}")
-    public ResponseEntity<MemberDto.Response> findByid(@PathVariable Long id){
-        return ResponseEntity.ok().body(memberService.findByid(id));
-    }
+
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deleteMember(@PathVariable Long id){
+//        memberService.deleteMember(id);
+//        return ResponseEntity.ok().build();
+//    }
+//
+//    @GetMapping("/{id}")
+//    public ResponseEntity<MemberDto.Response> findByid(@PathVariable Long id){
+//        return ResponseEntity.ok().body(memberService.findByid(id));
+//    }
 
 
 

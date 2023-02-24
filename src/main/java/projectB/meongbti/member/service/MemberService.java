@@ -60,7 +60,7 @@ public class MemberService {
 //     */
 
 //    public MemberDto updateMember(Long id, MemberDto memberDto){
-//        Member member = memberRepository.findById(id).orElseThrow(() -> new NotExistMember(id));
+//        Member member = memberRepository.findById(id).orElseThrow(() -> new NotExistMember());
 //
 //        String FullPath = "";
 //        if()
@@ -78,7 +78,7 @@ public class MemberService {
 //
 //    public void deleteMember(Long id){
 //
-//        Member member = memberRepository.findById(id).orElseThrow(() -> new NotExistMember(id));
+//        Member member = memberRepository.findById(id).orElseThrow(() -> new NotExistMember());
 //        memberRepository.delete(member);
 //
 //
@@ -90,7 +90,7 @@ public class MemberService {
 //
 //    public MemberDto findByid(Long id) {
 //        Member member = memberRepository.findById(id)
-//                .orElseThrow(() -> new NotExistMember(id));
+//                .orElseThrow(() -> new NotExistMember());
 //        return toDto(member);
 //    }
 //

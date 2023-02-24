@@ -37,7 +37,7 @@ public class PetService {
      */
     public Long savePet(PetSaveDto petSaveDto) {
         //전달 받은 memberId를 통해 member 정보 조회
-        Member member = memberRepository.findById(petSaveDto.getMemberId()).orElseThrow(() -> new NotExistMember(petSaveDto.getMemberId()));
+        Member member = memberRepository.findById(petSaveDto.getMemberId()).orElseThrow(() -> new NotExistMember());
 
         //이미지를 저장한다.
         String fullPath = "";
@@ -49,6 +49,7 @@ public class PetService {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+
             fullPath = imageStore.getFullPath(imageMapping.getImStore());
             imageRepository.save(imageMapping);
         }
