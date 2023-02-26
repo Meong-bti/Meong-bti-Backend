@@ -40,7 +40,6 @@ public class Pet {
 
     private String petMbti;
 
-
     private String petImage;
 
     @ManyToOne(fetch = FetchType.LAZY)
