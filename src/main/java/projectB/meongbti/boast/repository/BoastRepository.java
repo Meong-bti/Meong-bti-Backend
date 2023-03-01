@@ -8,5 +8,7 @@ public interface BoastRepository {
 
     public void saveBoast(Boast boast);
 
-//    public void deleteBoast(Boast boast);
+    public void deleteBoast(Boast boast);
+
+    public Optional<Boast> findOne(Long boastId);
 }
