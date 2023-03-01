@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import projectB.meongbti.heart.entity.Heart;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -41,5 +42,20 @@ public class JpaHeartRepository implements HeartRepository {
                 .setParameter("boastId", boastId)
                 .getResultList()
                 .stream().findAny();
+    }
+
+    /**
+     * 멤버ID를 이용하여 좋아요 한 자랑하기 목록 조회
+     */
+    @Override
+    public List<Heart> findByMemberId(Long memberId) {
+        String jpql = "select h from Heart h " +
+                "join fetch Boast b " +
+                "join fetch Member m " +
+                "where h.member.memberId = :memberId";
+
+        return em.createQuery(jpql, Heart.class)
+                .setParameter("memberId", memberId)
+                .getResultList();
     }
 }
