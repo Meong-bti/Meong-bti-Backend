@@ -10,5 +10,5 @@ public interface BoastRepository {
 
     public void deleteBoast(Boast boast);
 
-    public Optional<Boast> findOne(Long boastId);
+    public Optional<Boast> findOneByBoastId(Long boastId);
 }

@@ -33,14 +33,14 @@ public class JpaBoastRepository implements BoastRepository {
      * 자랑하기 조회
      */
     @Override
-    public Optional<Boast> findOne(Long boastId) {
-        String jpql = "select b from Boast b where b.boastId = :boastId";
+    public Optional<Boast> findOneByBoastId(Long boastId) {
+//        String jpql = "select b from Boast b where b.boastId = :boastId";
+//
+//        return em.createQuery(jpql, Boast.class)
+//                .setParameter("boastId", boastId)
+//                .getResultList()
+//                .stream().findAny();
 
-        return em.createQuery(jpql, Boast.class)
-                .setParameter("boastId", boastId)
-                .getResultList()
-                .stream().findAny();
-
-        //return Optional.ofNullable(em.find(Boast.class, boastId));
+        return Optional.ofNullable(em.find(Boast.class, boastId));
     }
 }

@@ -20,18 +20,9 @@ public class PetController {
     /**
      * 펫 등록
      */
-    @PostMapping("save")
+    @PostMapping("/save")
     public Long savePet(@RequestBody PetSaveDto petSaveDto) {
         return petService.savePet(petSaveDto);
-    }
-
-
-    /**
-     * 펫 수정
-     */
-    @PatchMapping("/update/{petId}")
-    public Long updatePet(@PathVariable Long petId, @RequestBody PetUpdateDto petUpdateDto) {
-        return petService.updatePet(petId, petUpdateDto);
     }
 
     /**
@@ -40,6 +31,14 @@ public class PetController {
     @DeleteMapping("/delete/{petId}")
     public Long deletePet(@PathVariable Long petId) {
         return petService.deletePet(petId);
+    }
+
+    /**
+     * 펫 수정
+     */
+    @PatchMapping("/update/{petId}")
+    public Long updatePet(@PathVariable Long petId, @RequestBody PetUpdateDto petUpdateDto) {
+        return petService.updatePet(petId, petUpdateDto);
     }
 
     /**

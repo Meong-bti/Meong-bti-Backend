@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import projectB.meongbti.boast.entity.Boast;
 import projectB.meongbti.boast.repository.BoastRepository;
+import projectB.meongbti.exception.member.NotExistMember;
 import projectB.meongbti.heart.dto.HeartDto;
+import projectB.meongbti.heart.dto.HeartRequestDto;
 import projectB.meongbti.heart.entity.Heart;
 import projectB.meongbti.heart.repository.HeartRepository;
 import projectB.meongbti.member.entity.Member;
@@ -27,10 +29,10 @@ public class HeartService {
     /**
      * 좋아요 추가
      */
-    public Long addHeart(Long memberId, Long boastId) {
+    public Long addHeart(HeartRequestDto heartRequestDto) {
         //멤버ID와 게시글ID를 조회
-        Member member = memberRepository.findById(memberId).get();
-        Boast boast = boastRepository.findOne(boastId).get();
+        Member member = memberRepository.findById(heartRequestDto.getMemberId()).orElseThrow(() -> new NotExistMember());
+        Boast boast = boastRepository.findOne(heartRequestDto.getBoastId()).orElseThrow(() -> new RuntimeException()); //여기 수정 필요
 
         Heart heart = Heart.builder()
                 .member(member)
@@ -45,9 +47,9 @@ public class HeartService {
     /**
      * 좋아요 취소
      */
-    public Long cancelHeart(Long memberId, Long boastId) {
+    public Long cancelHeart(HeartRequestDto heartRequestDto) {
         //멤버ID와 자랑하기ID를 이용하여 좋아요 정보 조회
-        Heart heart = heartRepository.findByMemberAndBoast(memberId, boastId).get();
+        Heart heart = heartRepository.findByMemberAndBoast(heartRequestDto).orElseThrow(() -> new RuntimeException()); //여기도 수정 필요
 
         heartRepository.cancelHeart(heart);
 
@@ -65,7 +67,7 @@ public class HeartService {
         List<HeartDto> returnList = new ArrayList<>();
         findHeart.forEach(heart -> {
             HeartDto heartDto = new HeartDto();
-            heartDto.entityToDto(heart);
+            heartDto.fromEntity(heart);
             returnList.add(heartDto);
         });
 

@@ -35,7 +35,7 @@ public class JpaPetRepository implements PetRepository {
      * 멤버ID를 이용하여 멤버의 애완동물을 조회
      */
     @Override
-    public List<Pet> findBymemberId(Long memberId) {
+    public List<Pet> findByMemberId(Long memberId) {
         String jpql = "select p from Pet p where p.member.id = :memberId";
 
         List<Pet> findPets = em.createQuery(jpql, Pet.class)
@@ -49,12 +49,14 @@ public class JpaPetRepository implements PetRepository {
      * 펫ID를 이용하여 펫 정보 조회
      */
     @Override
-    public Optional<Pet> findByPetId(Long petId) {
-        String jpql = "select p from Pet p where p.petId = :petId";
+    public Optional<Pet> findOneByPetId(Long petId) {
+//        String jpql = "select p from Pet p where p.petId = :petId";
+//
+//        return em.createQuery(jpql, Pet.class)
+//                .setParameter("petId", petId)
+//                .getResultList()
+//                .stream().findAny();
 
-        return em.createQuery(jpql, Pet.class)
-                .setParameter("petId", petId)
-                .getResultList()
-                .stream().findAny();
+        return Optional.ofNullable(em.find(Pet.class, petId));
     }
 }

@@ -13,8 +13,8 @@ public interface PetRepository {
 
     void deletePet(Pet pet);
 
-    public List<Pet> findBymemberId(Long memberId);
+    public List<Pet> findByMemberId(Long memberId);
 
-    public Optional<Pet> findByPetId(Long petId);
+    public Optional<Pet> findOneByPetId(Long petId);
 
 }

@@ -29,7 +29,7 @@ public class BoastService {
     public Long saveBoast(BoastSaveDto boastSaveDto) {
         //전달 받은 memberId와 petId를 이용하여 정보 조회
         Member member = memberRepository.findById(boastSaveDto.getMemberId()).orElseThrow(() -> new NotExistMember());
-        Pet pet = petRepository.findByPetId(boastSaveDto.getPetId()).orElseThrow(() -> new NotExistPet());
+        Pet pet = petRepository.findOneByPetId(boastSaveDto.getPetId()).orElseThrow(() -> new NotExistPet());
 
         //사진저장부분 로직 추가해야한다.
 
@@ -45,4 +45,15 @@ public class BoastService {
 
         return boast.getBoastId();
     }
+
+    public Long deleteBoast(Long boastId) {
+        //boast 정보 조회
+        Boast boast = boastRepository.findOneByBoastId(boastId).orElseThrow(() -> new RuntimeException()); //수정 필요
+
+        boastRepository.deleteBoast(boast);
+
+        return boastId;
+    }
+
+
 }

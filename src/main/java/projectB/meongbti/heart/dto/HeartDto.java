@@ -16,7 +16,7 @@ public class HeartDto {
 
     private Boast boast;
 
-    public void entityToDto(Heart heart) {
+    public void fromEntity(Heart heart) {
         this.heartId = heart.getHeartId();
         this.member = heart.getMember();
         this.boast = heart.getBoast();
