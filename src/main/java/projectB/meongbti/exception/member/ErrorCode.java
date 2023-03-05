@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 public enum ErrorCode {
     DUPLICATED_MEMBER_EMAIL(HttpStatus.CONFLICT,"이미 가입된 이메일입니다."),
-
     USER_NOT_FOUND(HttpStatus.NOT_FOUND,"유저를 찾을 수 없습니다."),
+
 
 
     ;

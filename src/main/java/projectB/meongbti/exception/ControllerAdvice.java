@@ -17,11 +17,21 @@ public class ControllerAdvice {
     /**
      * Member 관련 Exception
      */
+//    @ExceptionHandler(MemberException.class)
+//    public ResponseEntity<?> MemberHandler(MemberException e) {
+//
+//        return ResponseEntity.status(e.getErrorCode().getStatus())
+//                .body(Response.error(e.getErrorCode().name()));
+//    }
+
     @ExceptionHandler(MemberException.class)
-    public ResponseEntity<?> MemberHandler(MemberException e) {
+    public ResponseEntity<Map<String, String>> MemberHandler(MemberException e) {
+        Map<String, String> error = new HashMap<>();
+
+        error.put("message", e.getMessage());
 
         return ResponseEntity.status(e.getErrorCode().getStatus())
-                .body(Response.error(e.getErrorCode().name()));
+                .body(error);
     }
 
     /**
@@ -36,5 +46,6 @@ public class ControllerAdvice {
 
         return ResponseEntity.badRequest().body(error);
     }
+
 
 }

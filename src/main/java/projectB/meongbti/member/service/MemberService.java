@@ -24,7 +24,8 @@ public class MemberService {
     @PostMapping("/signup")
     public Member signup(String memberEmail, String memberPw, String memberName){
         memberRepository.findByMemberEmail(memberEmail).ifPresent(it -> {
-            throw new MemberException(ErrorCode.DUPLICATED_MEMBER_EMAIL, String.format("%s is duplicated",memberEmail));
+//            throw new MemberException(ErrorCode.DUPLICATED_MEMBER_EMAIL, String.format("%s is duplicated",memberEmail));
+            throw new MemberException(ErrorCode.DUPLICATED_MEMBER_EMAIL);
         });
 
         Member member = memberRepository.save(Member.builder()
