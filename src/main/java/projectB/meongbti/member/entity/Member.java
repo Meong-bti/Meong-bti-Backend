@@ -27,7 +27,6 @@ public class Member {
 
     @Column(nullable = false)
     private String memberNick;
-    private String memberImage;
 
 
     @OneToMany(mappedBy = "member")
@@ -35,12 +34,12 @@ public class Member {
 
 
     @Builder
-    public Member(String memberEmail, String memberPw, String memberNick, String memberImage) {
+    public Member(String memberEmail, String memberPw, String memberNick) {
         this.memberEmail = memberEmail;
         this.memberPw = memberPw;
         this.memberNick = memberNick;
-        this.memberImage = memberImage;
     }
+
 
 
     public void update( String memberNick, String memberPw) {

@@ -41,7 +41,6 @@ class PetServiceTest {
         Member member = Member.builder()
                 .memberEmail("test@test.com")
                 .memberPw("test")
-                .memberPhone("010-0000-0000")
                 .memberNick("test")
                 .build();
         memberRepository.save(member);
@@ -78,7 +77,6 @@ class PetServiceTest {
         Member member = Member.builder()
                 .memberEmail("test@test.com")
                 .memberPw("test")
-                .memberPhone("010-0000-0000")
                 .memberNick("test")
                 .build();
         memberRepository.save(member);
@@ -109,7 +107,6 @@ class PetServiceTest {
         Member member = Member.builder()
                 .memberEmail("test@test.com")
                 .memberPw("test")
-                .memberPhone("010-0000-0000")
                 .memberNick("test")
                 .build();
         memberRepository.save(member);
@@ -155,7 +152,6 @@ class PetServiceTest {
         Member member = Member.builder()
                 .memberEmail("test@test.com")
                 .memberPw("test")
-                .memberPhone("010-0000-0000")
                 .memberNick("test")
                 .build();
         memberRepository.save(member);
@@ -193,7 +189,6 @@ class PetServiceTest {
         Member member = Member.builder()
                 .memberEmail("test@test.com")
                 .memberPw("test")
-                .memberPhone("010-0000-0000")
                 .memberNick("test")
                 .build();
         memberRepository.save(member);

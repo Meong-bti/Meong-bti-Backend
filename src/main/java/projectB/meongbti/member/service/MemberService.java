@@ -2,20 +2,15 @@ package projectB.meongbti.member.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import projectB.meongbti.member.dto.MemberJoinRequestDto;
-import projectB.meongbti.member.dto.MemberJoinResponseDto;
+import projectB.meongbti.exception.member.ErrorCode;
+import projectB.meongbti.exception.member.MemberException;
+import projectB.meongbti.member.dto.MemberDto;
 import projectB.meongbti.member.entity.Member;
 import projectB.meongbti.member.repository.MemberRepository;
-import projectB.meongbti.util.image.Entity.ImageMapping;
-import projectB.meongbti.util.image.ImageStore;
-import projectB.meongbti.util.image.repository.ImageRepository;
-
-import java.io.IOException;
 
 @Service
 @Log4j2
@@ -24,36 +19,23 @@ import java.io.IOException;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-    private final ImageStore imageStore;
-    private final ImageRepository imageRepository;
 
 
     @PostMapping("/signup")
-    public ResponseEntity<MemberJoinResponseDto> memberSignup(MemberJoinRequestDto memberJoinRequestDTO) throws IOException {
+    public Member signup(String memberEmail, String memberPw, String memberName){
+        memberRepository.findByMemberEmail(memberEmail).ifPresent(it -> {
+            throw new MemberException(ErrorCode.DUPLICATED_MEMBER_EMAIL, String.format("%s is duplicated",memberEmail));
+        });
 
-        String FullPath = "";
-        if(!memberJoinRequestDTO.getMemberImage().isEmpty()){
-
-            ImageMapping imageMapping = imageStore.storeFile(memberJoinRequestDTO.getMemberImage());
-            FullPath = imageStore.getFullPath(imageMapping.getImStore());
-            imageRepository.save(imageMapping);
-
-        }
-        Member  member = Member.builder()
-                .memberEmail(memberJoinRequestDTO.getMemberEmail())
-                .memberPw(memberJoinRequestDTO.getMemberPw())
-                .memberNick(memberJoinRequestDTO.getMemberNick())
-                .memberImage(FullPath)
-                .build();
-        memberRepository.save(member);
-
-        return ResponseEntity.ok().body(MemberJoinResponseDto.builder()
-                .memberEmail(member.getMemberEmail())
-                .memberNick(member.getMemberNick())
-                .memberImage(FullPath)
+        Member member = memberRepository.save(Member.builder()
+                .memberEmail(memberEmail)
+                .memberPw(memberPw)
+                .memberNick(memberName)
                 .build());
 
+        return MemberDto.fromEntity(member);
     }
+
 
 //    /**
 //     * 회원 수정

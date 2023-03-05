@@ -1,4 +1,4 @@
-package projectB.meongbti.member.dto;
+package projectB.meongbti.member.dto.request;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -10,15 +10,15 @@ import org.springframework.web.multipart.MultipartFile;
 public class MemberJoinRequestDto {
     private String memberEmail;
     private String memberPw;
-    private String memberNick;
-    private MultipartFile memberImage;
+    private String memberName;
+
 
     @Builder
-    public MemberJoinRequestDto(String memberEmail, String memberPw, String memberNick, MultipartFile  memberImage) {
+    public MemberJoinRequestDto(String memberEmail, String memberPw, String memberName) {
         this.memberEmail = memberEmail;
         this.memberPw = memberPw;
-        this.memberNick = memberNick;
-        this.memberImage = memberImage;
+        this.memberName = memberName;
+
     }
 
 

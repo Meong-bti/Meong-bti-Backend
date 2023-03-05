@@ -1,28 +1,28 @@
 package projectB.meongbti.member.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
+import projectB.meongbti.member.entity.Member;
 
-@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 public class MemberDto {
     private String memberEmail;
     private String memberPw;
     private String memberNick;
-    private String memberImage;
 
-    @Builder
-    public MemberDto(String memberEmail, String memberPw,  String memberNick, String memberImage) {
-        this.memberEmail = memberEmail;
-        this.memberPw = memberPw;
-        this.memberNick = memberNick;
-        this.memberImage = memberImage;
+
+    public static Member fromEntity(Member member) {
+        return new Member(
+            member.getMemberEmail(),
+            member.getMemberPw(),
+            member.getMemberNick()
+        );
     }
-
-
-    }
+}
 
 
 
