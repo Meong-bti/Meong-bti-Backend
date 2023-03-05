@@ -41,19 +41,19 @@ public class PetService {
         Member member = memberRepository.findById(petSaveDto.getMemberId()).orElseThrow(() -> new MemberException(ErrorCode.USER_NOT_FOUND));
 
         //이미지를 저장한다.
-//        String fullPath = "";
-//        if (!petSaveDto.getPetImage().isEmpty()) {
-//            ImageMapping imageMapping;
-//
-//            try {
-//                imageMapping = imageStore.storeFile(petSaveDto.getPetImage());
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//
-//            fullPath = imageStore.getFullPath(imageMapping.getImStore());
-//            imageRepository.save(imageMapping);
-//        }
+        String fullPath = "";
+        if (!petSaveDto.getPetImage().isEmpty()) {
+            ImageMapping imageMapping;
+
+            try {
+                imageMapping = imageStore.storeFile(petSaveDto.getPetImage());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            fullPath = imageStore.getFullPath(imageMapping.getImStore());
+            imageRepository.save(imageMapping);
+        }
 
         //조회한 member를 pet 엔티티에 저장
         Pet pet = Pet.builder()
@@ -63,7 +63,7 @@ public class PetService {
                 .petGender(petSaveDto.getPetGender())
                 .petNtlz(petSaveDto.getPetNtlz())
                 .petWeight(petSaveDto.getPetWeight())
-//                .petImage(fullPath)
+                .petImage(fullPath)
                 .member(member)
                 .build();
 
@@ -80,7 +80,7 @@ public class PetService {
      * 펫 삭제
      */
     public Long deletePet(Long petId) {
-        Pet pet = petRepository.findOneByPetId(petId).orElseThrow(() -> new NotExistPet());
+        Pet pet = petRepository.findByPetId(petId).orElseThrow(() -> new NotExistPet());
 
         petRepository.deletePet(pet);
 
@@ -93,20 +93,20 @@ public class PetService {
     public Long updatePet(Long petId, PetUpdateDto petUpdateDto) {
         //petId를 이용하여 펫 정보를 우선적으로 조회
         //펫 정보가 없으면 NotExistPet 예외를 발생시킨다.
-        Pet pet = petRepository.findOneByPetId(petId).orElseThrow(() -> new NotExistPet());
+        Pet pet = petRepository.findByPetId(petId).orElseThrow(() -> new NotExistPet());
 
         //이미지를 저장한다.
         String fullPath = pet.getPetImage();
-//        if (!petUpdateDto.getPetImage().isEmpty()) {
-//            ImageMapping imageMapping;
-//            try {
-//                imageMapping = imageStore.storeFile(petUpdateDto.getPetImage());
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//            fullPath = imageStore.getFullPath(imageMapping.getImStore());
-//            imageRepository.save(imageMapping);
-//        }
+        if (!petUpdateDto.getPetImage().isEmpty()) {
+            ImageMapping imageMapping;
+            try {
+                imageMapping = imageStore.storeFile(petUpdateDto.getPetImage());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            fullPath = imageStore.getFullPath(imageMapping.getImStore());
+            imageRepository.save(imageMapping);
+        }
 
         //펫 정보를 업데이트
         pet.updatePet(petUpdateDto, fullPath);
@@ -119,13 +119,10 @@ public class PetService {
      */
     @Transactional(readOnly = true)
     public PetDto findOneByPetId(Long petId) {
-        Pet pet = petRepository.findOneByPetId(petId)
+        Pet pet = petRepository.findByPetId(petId)
                 .orElseThrow(() -> new NotExistPet());
 
-        PetDto petDto = new PetDto();
-        petDto.fromEntity(pet);
-
-        return petDto;
+        return EntityToDto(pet);
     }
 
     /**
@@ -133,16 +130,33 @@ public class PetService {
      */
     @Transactional(readOnly = true)
     public List<PetDto> findAllByMemberId(Long memberId) {
-        List<Pet> findPets = petRepository.findByMemberId(memberId);
+        List<Pet> findPets = petRepository.findBymemberId(memberId);
 
         List<PetDto> returnList = new ArrayList<>();
 
         findPets.stream().forEach(pet -> {
-            PetDto petDto = new PetDto();
-            petDto.fromEntity(pet);
+            PetDto petDto = EntityToDto(pet);
             returnList.add(petDto);
         });
 
         return returnList;
+    }
+
+    /**
+     * 펫 Entity -> Dto
+     */
+    public PetDto EntityToDto(Pet pet) {
+        return PetDto.builder()
+                .petId(pet.getPetId())
+                .petName(pet.getPetName())
+                .petBreed(pet.getPetBreed())
+                .petBday(pet.getPetBday())
+                .petGender(pet.getPetGender())
+                .petNtlz(pet.getPetNtlz())
+                .petWeight(pet.getPetWeight())
+                .petMbti(pet.getPetMbti())
+                .petImage(pet.getPetImage())
+                .memberId(pet.getMember().getMemberId())
+                .build();
     }
 }

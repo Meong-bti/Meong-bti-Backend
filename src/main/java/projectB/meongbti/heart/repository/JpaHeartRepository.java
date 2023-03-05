@@ -2,7 +2,6 @@ package projectB.meongbti.heart.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import projectB.meongbti.heart.dto.HeartRequestDto;
 import projectB.meongbti.heart.entity.Heart;
 
 import javax.persistence.EntityManager;
@@ -35,15 +34,14 @@ public class JpaHeartRepository implements HeartRepository {
      * 좋아요 정보 조회 By MemberId And BoastId
      */
     @Override
-    public Optional<Heart> findByMemberAndBoast(HeartRequestDto heartRequestDto) {
+    public Optional<Heart> findByMemberAndBoast(Long memberId, Long boastId) {
         String jpql = "select h from Heart h where h.member.memberId = :memberId and h.boast.boastId = :boastId";
 
-        return Optional.ofNullable(
-                em.createQuery(jpql, Heart.class)
-                .setParameter("memberId", heartRequestDto.getMemberId())
-                .setParameter("boastId", heartRequestDto.getBoastId())
-                .getSingleResult()
-        );
+        return em.createQuery(jpql, Heart.class)
+                .setParameter("memberId", memberId)
+                .setParameter("boastId", boastId)
+                .getResultList()
+                .stream().findAny();
     }
 
     /**

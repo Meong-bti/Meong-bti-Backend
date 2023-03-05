@@ -1,6 +1,5 @@
 package projectB.meongbti.heart.repository;
 
-import projectB.meongbti.heart.dto.HeartRequestDto;
 import projectB.meongbti.heart.entity.Heart;
 
 import java.util.List;
@@ -12,7 +11,7 @@ public interface HeartRepository {
 
     public void cancelHeart(Heart heart);
 
-    public Optional<Heart> findByMemberAndBoast(HeartRequestDto heartRequestDto);
+    public Optional<Heart> findByMemberAndBoast(Long memberId, Long boastId);
 
     public List<Heart> findByMemberId(Long memberId);
 }
