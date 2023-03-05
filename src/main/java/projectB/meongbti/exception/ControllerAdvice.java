@@ -4,9 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import projectB.meongbti.exception.member.MemberJoinException;
-import projectB.meongbti.exception.member.NotExistMember;
+import projectB.meongbti.exception.member.MemberException;
 import projectB.meongbti.exception.pet.NotExistPet;
+import projectB.meongbti.member.dto.response.Response;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,28 +17,12 @@ public class ControllerAdvice {
     /**
      * Member 관련 Exception
      */
-    @ExceptionHandler(NotExistMember.class)
-    public ResponseEntity<Map<String, String>> notExistMember(NotExistMember e) {
-        log.error("##### NotExistMember 에러 발생 #####");
+    @ExceptionHandler(MemberException.class)
+    public ResponseEntity<?> MemberHandler(MemberException e) {
 
-        Map<String, String> error = new HashMap<>();
-        error.put("message", e.getMessage());
-
-        return ResponseEntity.badRequest().body(error);
+        return ResponseEntity.status(e.getErrorCode().getStatus())
+                .body(Response.error(e.getErrorCode().name()));
     }
-    /**
-     * Member 등록 Exception
-     */
-    @ExceptionHandler(MemberJoinException.class)
-    public ResponseEntity<Map<String, String>> memberJoinException(MemberJoinException e) {
-        log.error("##### MemberJoinException 에러 발생 #####");
-
-        Map<String, String> error = new HashMap<>();
-        error.put("message", e.getMessage());
-
-        return ResponseEntity.badRequest().body(error);
-    }
-
 
     /**
      * Pet 관련 Exception

@@ -3,7 +3,8 @@ package projectB.meongbti.pet.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import projectB.meongbti.exception.member.NotExistMember;
+import projectB.meongbti.exception.member.ErrorCode;
+import projectB.meongbti.exception.member.MemberException;
 import projectB.meongbti.exception.pet.NotExistPet;
 import projectB.meongbti.member.entity.Member;
 import projectB.meongbti.member.repository.MemberRepository;
@@ -37,7 +38,7 @@ public class PetService {
      */
     public Long savePet(PetSaveDto petSaveDto) {
         //전달 받은 memberId를 통해 member 정보 조회
-        Member member = memberRepository.findById(petSaveDto.getMemberId()).orElseThrow(() -> new NotExistMember());
+        Member member = memberRepository.findById(petSaveDto.getMemberId()).orElseThrow(() -> new MemberException(ErrorCode.USER_NOT_FOUND));
 
         //이미지를 저장한다.
 //        String fullPath = "";
