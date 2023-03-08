@@ -53,4 +53,12 @@ public class JpaBoastRepository implements BoastRepository {
                 .setParameter("memberId", memberId)
                 .getResultList();
     }
+
+    @Override
+    public List<Boast> findAll() {
+        String jpql = "select b from Boast b";
+
+        return em.createQuery(jpql, Boast.class)
+                .getResultList();
+    }
 }

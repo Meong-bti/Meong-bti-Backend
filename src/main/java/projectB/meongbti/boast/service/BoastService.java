@@ -18,6 +18,7 @@ import projectB.meongbti.pet.entity.Pet;
 import projectB.meongbti.pet.repository.PetRepository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -56,5 +57,7 @@ public class BoastService {
         return boastId;
     }
 
-
+    public List<Boast> findAll() {
+        return boastRepository.findAll();
+    }
 }

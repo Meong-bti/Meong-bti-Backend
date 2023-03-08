@@ -14,4 +14,6 @@ public interface BoastRepository {
     public Optional<Boast> findOneByBoastId(Long boastId);
 
     public List<Boast> findByMemberId(Long memberId);
+
+    public List<Boast> findAll();
 }
