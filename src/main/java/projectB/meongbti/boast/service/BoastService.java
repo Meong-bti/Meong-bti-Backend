@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import projectB.meongbti.boast.dto.BoastSaveDto;
 import projectB.meongbti.boast.entity.Boast;
 import projectB.meongbti.boast.repository.BoastRepository;
+import projectB.meongbti.exception.boast.BoastErrorCode;
+import projectB.meongbti.exception.boast.BoastException;
 import projectB.meongbti.exception.member.ErrorCode;
 import projectB.meongbti.exception.member.MemberException;
 import projectB.meongbti.exception.pet.PetErrorCode;
@@ -24,7 +26,6 @@ import java.util.Optional;
 public class BoastService {
 
     private final BoastRepository boastRepository;
-
     private final MemberRepository memberRepository;
     private final PetRepository petRepository;
 
@@ -34,7 +35,6 @@ public class BoastService {
         Pet pet = petRepository.findOneByPetId(boastSaveDto.getPetId()).orElseThrow(() -> new PetException(PetErrorCode.PET_NOT_FOUND));
 
         //사진저장부분 로직 추가해야한다.
-
         Boast boast = Boast.builder()
                 .boastDate(LocalDateTime.now())
                 .boastContent(boastSaveDto.getBoastContent())
@@ -47,4 +47,14 @@ public class BoastService {
 
         return boast.getBoastId();
     }
+
+    public Long deleteBoast(Long boastId) {
+        Boast boast = boastRepository.findOneByBoastId(boastId).orElseThrow(() -> new BoastException(BoastErrorCode.BOAST_NOT_FOUND));
+
+        boastRepository.deleteBoast(boast);
+
+        return boastId;
+    }
+
+
 }

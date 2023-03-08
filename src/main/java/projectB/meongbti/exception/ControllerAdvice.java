@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import projectB.meongbti.exception.boast.BoastException;
 import projectB.meongbti.exception.heart.HeartException;
 import projectB.meongbti.exception.member.MemberException;
-import projectB.meongbti.exception.pet.NotExistPet;
 import projectB.meongbti.exception.pet.PetException;
-import projectB.meongbti.member.dto.response.Response;
 
 import java.util.HashMap;
 import java.util.Map;

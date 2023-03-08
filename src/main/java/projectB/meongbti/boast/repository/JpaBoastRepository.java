@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import projectB.meongbti.boast.entity.Boast;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -42,5 +43,14 @@ public class JpaBoastRepository implements BoastRepository {
 //                .stream().findAny();
 
         return Optional.ofNullable(em.find(Boast.class, boastId));
+    }
+
+    @Override
+    public List<Boast> findByMemberId(Long memberId) {
+        String jpql = "select b from Boast b where b.member.id = :memberId";
+
+        return em.createQuery(jpql, Boast.class)
+                .setParameter("memberId", memberId)
+                .getResultList();
     }
 }

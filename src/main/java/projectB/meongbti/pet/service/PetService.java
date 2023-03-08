@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import projectB.meongbti.exception.member.ErrorCode;
 import projectB.meongbti.exception.member.MemberException;
-import projectB.meongbti.exception.pet.NotExistPet;
 import projectB.meongbti.exception.pet.PetErrorCode;
 import projectB.meongbti.exception.pet.PetException;
 import projectB.meongbti.member.entity.Member;
@@ -15,11 +14,9 @@ import projectB.meongbti.pet.dto.PetSaveDto;
 import projectB.meongbti.pet.dto.PetUpdateDto;
 import projectB.meongbti.pet.entity.Pet;
 import projectB.meongbti.pet.repository.PetRepository;
-import projectB.meongbti.util.image.Entity.ImageMapping;
 import projectB.meongbti.util.image.ImageStore;
 import projectB.meongbti.util.image.repository.ImageRepository;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

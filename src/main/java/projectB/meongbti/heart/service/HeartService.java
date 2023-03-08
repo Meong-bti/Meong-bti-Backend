@@ -37,7 +37,7 @@ public class HeartService {
     public Long addHeart(HeartRequestDto heartRequestDto) {
         //멤버ID와 게시글ID를 조회
         Member member = memberRepository.findById(heartRequestDto.getMemberId()).orElseThrow(() -> new MemberException(ErrorCode.USER_NOT_FOUND));
-        Boast boast = boastRepository.findOne(heartRequestDto.getBoastId()).orElseThrow(() -> new BoastException(BoastErrorCode.BOAST_NOT_FOUND));
+        Boast boast = boastRepository.findOneByBoastId(heartRequestDto.getBoastId()).orElseThrow(() -> new BoastException(BoastErrorCode.BOAST_NOT_FOUND));
 
         Heart heart = Heart.builder()
                 .member(member)
