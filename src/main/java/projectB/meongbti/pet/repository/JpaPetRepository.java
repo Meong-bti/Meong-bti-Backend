@@ -49,12 +49,14 @@ public class JpaPetRepository implements PetRepository {
      * 펫ID를 이용하여 펫 정보 조회
      */
     @Override
-    public Optional<Pet> findByPetId(Long petId) {
-        String jpql = "select p from Pet p where p.petId = :petId";
+    public Optional<Pet> findOneByPetId(Long petId) {
+//        String jpql = "select p from Pet p where p.petId = :petId";
+//
+//        return em.createQuery(jpql, Pet.class)
+//                .setParameter("petId", petId)
+//                .getResultList()
+//                .stream().findAny();
 
-        return em.createQuery(jpql, Pet.class)
-                .setParameter("petId", petId)
-                .getResultList()
-                .stream().findAny();
+        return Optional.ofNullable(em.find(Pet.class, petId));
     }
 }

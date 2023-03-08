@@ -15,6 +15,6 @@ public interface PetRepository {
 
     public List<Pet> findBymemberId(Long memberId);
 
-    public Optional<Pet> findByPetId(Long petId);
+    public Optional<Pet> findOneByPetId(Long petId);
 
 }

@@ -2,6 +2,7 @@ package projectB.meongbti.pet.entity;
 
 import lombok.*;
 import projectB.meongbti.member.entity.Member;
+import projectB.meongbti.pet.dto.PetDto;
 import projectB.meongbti.pet.dto.PetUpdateDto;
 
 import javax.persistence.*;
@@ -45,6 +46,21 @@ public class Pet {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    //==Dto 변환 메서드==//
+    public PetDto fromEntity(Pet pet) {
+        return PetDto.builder()
+                .petId(pet.getPetId())
+                .petName(pet.getPetName())
+                .petBreed(pet.getPetBreed())
+                .petBday(pet.getPetBday())
+                .petGender(pet.getPetGender())
+                .petNtlz(pet.getPetNtlz())
+                .petWeight(pet.getPetWeight())
+                .petMbti(pet.getPetMbti())
+                .petImage(pet.getPetImage())
+                .build();
+    }
 
     //==엔티티 메서드==//
     public void updatePet(PetUpdateDto petUpdateDto, String fullPath) {

@@ -7,6 +7,7 @@ import projectB.meongbti.pet.entity.PetNtlz;
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class PetDto {

@@ -2,6 +2,7 @@ package projectB.meongbti.heart.entity;
 
 import lombok.*;
 import projectB.meongbti.boast.entity.Boast;
+import projectB.meongbti.heart.dto.HeartDto;
 import projectB.meongbti.member.entity.Member;
 
 import javax.persistence.*;
@@ -23,4 +24,13 @@ public class Heart {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "boast_id")
     private Boast boast;
+
+    //==Dto 변환 메서드==//
+    public HeartDto fromEntity(Heart heart) {
+        return HeartDto.builder()
+                .heartId(heart.getHeartId())
+                .member(heart.getMember())
+                .boast(heart.getBoast())
+                .build();
+    }
 }

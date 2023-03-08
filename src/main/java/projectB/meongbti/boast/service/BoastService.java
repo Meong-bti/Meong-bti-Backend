@@ -6,8 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 import projectB.meongbti.boast.dto.BoastSaveDto;
 import projectB.meongbti.boast.entity.Boast;
 import projectB.meongbti.boast.repository.BoastRepository;
-import projectB.meongbti.exception.member.NotExistMember;
-import projectB.meongbti.exception.pet.NotExistPet;
+import projectB.meongbti.exception.member.ErrorCode;
+import projectB.meongbti.exception.member.MemberException;
+import projectB.meongbti.exception.pet.PetErrorCode;
+import projectB.meongbti.exception.pet.PetException;
 import projectB.meongbti.member.entity.Member;
 import projectB.meongbti.member.repository.MemberRepository;
 import projectB.meongbti.pet.entity.Pet;
@@ -28,8 +30,8 @@ public class BoastService {
 
     public Long saveBoast(BoastSaveDto boastSaveDto) {
         //전달 받은 memberId와 petId를 이용하여 정보 조회
-        Member member = memberRepository.findById(boastSaveDto.getMemberId()).orElseThrow(() -> new NotExistMember());
-        Pet pet = petRepository.findByPetId(boastSaveDto.getPetId()).orElseThrow(() -> new NotExistPet());
+        Member member = memberRepository.findById(boastSaveDto.getMemberId()).orElseThrow(() -> new MemberException(ErrorCode.USER_NOT_FOUND));
+        Pet pet = petRepository.findOneByPetId(boastSaveDto.getPetId()).orElseThrow(() -> new PetException(PetErrorCode.PET_NOT_FOUND));
 
         //사진저장부분 로직 추가해야한다.
 
